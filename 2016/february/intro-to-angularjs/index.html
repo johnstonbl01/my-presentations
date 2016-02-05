@@ -45,7 +45,7 @@
 						<small>Blake Johnston / <a href="http://twitter.com/johnstonbl01">@johnstonbl01</a></small>
 					</p>
 					<p style="margin-top: -16px">
-						<small>Slides at <a href="">INSERT HERE</a></small>
+						<small>Slides at <a href="http://bit.ly/nwa-intro-to-angular">bit.ly/nwa-intro-to-angular</a></small>
 					</p>
 				</section>
 				
@@ -130,13 +130,46 @@
 					</section>
 
 					<section>
+						<h2>Dependency Injection</h2>
+						<img style="border:none; background-color:transparent; box-shadow: none;" src="ang-fund-di01.svg" width="600px">
+						<p>Single-responsibility components; loosely coupled</p>
+					</section>
+
+					<section>
+						<h2>Dependency Injection</h2>
+						<img style="border:none; background-color:transparent; box-shadow: none;" src="ang-fund-di02.svg" width="700px">
+					</section>
+					
+					<section>
 						<h2>Services</h2>
 						<img style="border:none; background-color:transparent; box-shadow: none; margin-top: -30px" src="ang-arch02.svg" width="850px">
 					</section>
 
 					<section>
+						<h2>Services</h2>
+						<pre><code class="hljs" data-trim contenteditable>
+angular
+   .module('moduleName')
+   .factory('factoryName', factoryFunctionName);
+
+   function factoryFunctionName () { ... }
+						</code></pre>
+					</section>
+
+					<section>
 						<h2>Controllers</h2>
 						<img style="border:none; background-color:transparent; box-shadow: none; margin-top: -30px" src="ang-arch03.svg" width="850px">
+					</section>
+
+					<section>
+						<h2>Controllers</h2>
+						<pre><code class="hljs" data-trim contenteditable>
+angular
+   .module('moduleName')
+   .controller('controllerName', controllerFunctionName);
+
+   function controllerFunctionName () { ... }
+						</code></pre>
 					</section>
 
 					<section>
@@ -150,16 +183,16 @@
 					</section>
 
 					<section>
-						<h2>Dependency Injection</h2>
-						<img style="border:none; background-color:transparent; box-shadow: none;" src="ang-fund-di01.svg" width="600px">
-						<p>Single-responsibility components; loosely coupled</p>
+						<h2>Directives</h2>
+						<pre><code class="hljs" data-trim contenteditable>
+angular
+   .module('moduleName')
+   .directive('directiveName', directiveFunctionName);
+
+   function directiveFunctionName () { ... }
+						</code></pre>
 					</section>
 
-					<section>
-						<h2>Dependency Injection</h2>
-						<img style="border:none; background-color:transparent; box-shadow: none;" src="ang-fund-di02.svg" width="700px">
-					</section>
-					
 					<section>
 						<h2>$compile</h2>
 						<img style="border:none; background-color:transparent; box-shadow: none; margin-top: -10px" src="ang-compile.svg" width="850px">
@@ -191,7 +224,7 @@
 						</code></pre>	
 						<pre><code class="hljs" data-trim contenteditable>
 angular
-   .module('myApp', ['$location', 'customModule']);
+   .module('moduleName', ['$location', 'customModule']);
 						</code></pre>						
 					</section>
 
