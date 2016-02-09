@@ -144,6 +144,11 @@
 						<h2>Dependency Injection</h2>
 						<img style="border:none; background-color:transparent; box-shadow: none;" src="ang-fund-di02.svg" width="700px">
 					</section>
+
+					<section>
+						<h2>$compile</h2>
+						<img style="border:none; background-color:transparent; box-shadow: none; margin-top: -10px" src="ang-compile.svg" width="850px">
+					</section>
 					
 					<section>
 						<h2>Services</h2>
@@ -152,12 +157,18 @@
 
 					<section>
 						<h2>Services</h2>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="hljs" data-trim>
 angular
    .module('moduleName')
    .factory('factoryName', factoryFunctionName);
 
-   function factoryFunctionName () { ... }
+   function factoryFunctionName () {
+      var methodName = function () { ... };
+
+      return {
+         method: methodName
+      };
+   }
 						</code></pre>
 					</section>
 
@@ -168,12 +179,22 @@ angular
 
 					<section>
 						<h2>Controllers</h2>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="hljs" data-trim>
 angular
    .module('moduleName')
    .controller('controllerName', controllerFunctionName);
 
-   function controllerFunctionName () { ... }
+   controllerFunctionName.$inject = ['dependency'];
+
+   function controllerFunctionName (dependency) { ... }
+						</code></pre>
+
+						<pre><code class="hljs" data-trim>
+...
+&lt;body ng-controller="controllerName"&gt;
+   {{ data-binding }}
+   ...
+&lt;/body&gt;
 						</code></pre>
 					</section>
 
@@ -189,23 +210,31 @@ angular
 
 					<section>
 						<h2>Directives</h2>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="hljs" data-trim>
 angular
    .module('moduleName')
    .directive('directiveName', directiveFunctionName);
 
-   function directiveFunctionName () { ... }
+   function directiveFunctionName () {
+      var ddo = {
+         restrict: 'EACM',
+         link: linkFunction
+      };
+      return ddo;
+   }
+						</code></pre>
+
+					<pre><code class="hljs" data-trim>
+...
+&lt;div directive-name&gt;
+   ...
+&lt;/div&gt;
 						</code></pre>
 					</section>
 
 					<section>
-						<h2>$compile</h2>
-						<img style="border:none; background-color:transparent; box-shadow: none; margin-top: -10px" src="ang-compile.svg" width="850px">
-					</section>
-
-					<section>
 						<h2>Using AngularJS</h2>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="hljs" data-trim>
 &lt;html&gt;
 ...
 &lt;body&gt;
@@ -222,12 +251,12 @@ angular
 
 					<section>
 						<h2>Create a module</h2>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="hljs" data-trim>
 &lt;html ng-app="moduleName"&gt;
 ...
 &lt;html&gt;
 						</code></pre>	
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="hljs" data-trim>
 angular
    .module('moduleName', ['$location', 'customModule']);
 						</code></pre>						
@@ -235,7 +264,7 @@ angular
 
 					<section>
 						<h2>Create other components</h2>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="hljs" data-trim>
 angular
    .module('myApp')
    .controller('myCtrl', myCtrl);
@@ -267,7 +296,7 @@ angular
 
 					<section>
 						<h2>IIFE</h2>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="hljs" data-trim>
 (function ctrlIIFE () {
    angular
       .module('myApp')
@@ -283,7 +312,7 @@ angular
 
 					<section>
 						<h2>Controller As</h2>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="hljs" data-trim>
 angular
    .module('myApp')
    .controller('myCtrl', myCtrl);
@@ -296,7 +325,7 @@ function myCtrl () {
    // $scope.world = 'Howdy!';
 }
 						</code></pre>
-<pre><code class="hljs" data-trim contenteditable>
+<pre><code class="hljs" data-trim>
 &lt;div ng-controller="myCtrl as ctrl"&gt;
    Hello, {{ ctrl.world }}!
 &lt;/div&gt;
@@ -306,7 +335,7 @@ function myCtrl () {
 
 					<section>
 						<h2>Dependency Injection</h2>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="hljs" data-trim>
 angular
    .module('myApp')
    .controller('myCtrl', ['$scope', function ($scope) {
@@ -314,7 +343,7 @@ angular
    }]);
 						</code></pre>
 						<p>Vs.</p>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="hljs" data-trim>
 angular
    .module('myApp')
    .controller('myCtrl', myCtrl);
@@ -328,7 +357,7 @@ function myCtrl ($scope) { ... }
 					<section>
 						<h2>Use Factories Instead of Services</h2>
 						<div class="comparison-container" style="width:100%">
-							<pre style="width:465px; float:left"><code class="hljs" data-trim contenteditable>
+							<pre style="width:465px; float:left"><code class="hljs" data-trim>
 angular
    .module('myApp')
    .factory('myService', myService);
@@ -341,7 +370,7 @@ function myService ($http) {
    };
 }
 							</code></pre>
-							<pre style="width:465px; float:right"><code class="hljs" data-trim contenteditable>
+							<pre style="width:465px; float:right"><code class="hljs" data-trim>
 angular
    .module('myApp')
    .factory('myFactory', myFactory);
