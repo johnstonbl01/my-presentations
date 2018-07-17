@@ -1,0 +1,513 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<style>
+			.reveal h2 {
+			    text-transform: none;
+			}
+			
+			.reveal h4 {
+			    text-transform: none;
+			}
+			
+			.reveal section img {
+				border: none;
+				background: none;
+				margin: 0;
+				box-shadow: none;
+			}
+			
+			.reveal pre {
+				box-shadow: none;
+			}
+			
+			#webpack-logo {
+				height: 400px;
+			}
+			
+			#title-how {
+				margin-bottom: -80px;
+			}
+			
+			#title-work {
+				margin-top: -80px;
+			}
+			
+			#revunit-logo {
+				width: 100px;
+				height: auto;
+				margin-top: 20px !important;
+			}
+			
+			.about-emoji {
+				width: 100px;
+				height: auto;
+			}
+			
+			.emoji-container {
+				margin-top: 20px !important;
+				margin-bottom: 60px !important;
+			}
+			
+			.full-width-image {
+				width: 100%;
+				height: auto;
+			}
+			
+			.inline-emoji {
+				width: 40px;
+				margin-right: 20px !important;
+			}
+			
+			.small-bottom-text {
+				font-size: 22px !important;
+				margin-top: 60px !important;
+			}
+			
+			.slide-in-right {
+				position: fixed;
+				bottom: -40px;
+				right: -520px;
+			}
+			
+			.slide-in-bottom {
+				position: fixed;
+				bottom: -200px;
+				left: -100px;
+			}
+		</style> 
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h2 id="title-how">How does</h2>
+					<img id="webpack-logo" src="assets/webpack.svg" alt="Webpack" />
+					<h2 id="title-work">work, anyway?</h2>
+					<div style="display: flex; margin-top: 80px">
+						<div style="flex: 1; color: #00AFAA; font-size: 36px">Blake Johnston</div>
+						<div style="flex: 1; color: #00AFAA; font-size: 36px">July 2018</div>
+					</div>
+				</section>
+				<section style="overflow: hidden">
+					<h2>Who dat?</h2>
+					<img id="revunit-logo" src="assets/revunit-rocket.png" alt="">
+					<div class="emoji-container">
+						<img class="about-emoji" src="assets/beer-emoji.svg" alt="">
+						<img class="about-emoji" src="assets/laptop-emoji.svg" alt="">
+						<img class="about-emoji" src="assets/taco-emoji.svg" alt="">
+						<img class="about-emoji" src="assets/baby-emoji.svg" alt="">
+						<img class="about-emoji" src="assets/sleep-emoji.svg" alt="">
+					</div>
+					<div>
+						<p>GitHub & Twitter: johnstonbl01</p>
+					</div>
+					<img class="fragment slide-in-right" src="assets/terry-learn.png"></img>
+					<aside class="notes">
+						<ul>
+							<li>Dev @ RU for 2.5 yrs</li>
+							<ul>
+								<li>React, React Native, Ionic, Angular, Node, GraphQL, etc, etc</li>
+							</ul>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>What is Webpack?</h2>
+					<img class="full-width-image" src="assets/divine-webpack.png" alt="">
+					<aside class="notes">
+						<ul>
+							<li>Goals for the talk</li>
+							<li>A high-level understanding of how Webpack works</li>
+							<li>Specifically:</li>
+							<ul>
+								<li>Bundle</li>
+								<li>Loaders</li>
+							</ul>
+							<li>Confidence when applying these principles to setting up the Webpack config</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>Webpack is a module bundler</h2>
+					<h4>Write your browser JavaScript with modules</h4>
+					<aside class="notes">
+						<ul>
+							<li>Module bundler</li>
+							<li>Not a task runner (i.e. Gulp)</li>
+							<li>Enables writing modular code for a web project</li>
+							<li>Original purpose vs current</li>
+							<li>Loaders / Plugins layered on top</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>Story Time!</h2>
+					<img class="about-emoji" src="assets/book-emoji.svg" alt="">
+					<img class="fragment visible slide-in-right" src="assets/terry-story.png"></img>
+					<aside class="notes">
+						<ul>
+							<li>Starter project with modules</li>
+							<li>file:///Users/bjohnston/dev/learn-webpack/index.html</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>Yes, yes... but how does it work?</h2>
+				</section>
+				<section>
+					<h2><img class="inline-emoji" src="assets/warning-emoji.svg">Disclaimer!</h2>
+					<img class="full-width-image" src="assets/iceberg.png" alt="">
+					<img class="fragment slide-in-bottom" src="assets/terry-mind-is-ready.png"></img>
+				</section>
+				<section>
+					<h2>Key Concepts:</h2>
+					<ul>
+						<li>Entry</li>
+						<li>Output</li>
+						<li>Mode</li>
+						<li>Loaders</li>
+						<li>Plugins</li>
+					</ul>
+					<p class="small-bottom-text">Also check out Sean Larkin's (Webpack Core team member) <a href="https://www.youtube.com/watch?v=AZPYL30ozCY)">Key Concept talk.</a></p>
+					<aside class="notes">
+						<ul>
+							<li>Entry (next slide)</li>
+							<li>Output</li>
+							<ul>
+								<li>Where and what format you want the output of Webpack to go</li>
+							</ul>
+							<li>Mode</li>
+							<ul>
+								<li>Environment setting for Webpack</li>
+								<li>Will optimize if set to production</li>
+							</ul>
+							<li>Loaders (later) -- think transform</li>
+							<li>Plugins</li>
+							<ul>
+								<li>Access to Webpack's compiler events (i.e. end to end)</li>
+								<li>Define Plugin</li>
+								<li>CSS Extract Plugin</li>
+							</ul>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>Entry</h2>
+					<img class="full-width-image" style="margin-top: 40px;" src="assets/dep-graph.png" alt="">
+					<aside class="notes">
+						<ul>
+							<li>Beginning of dependency graph</li>
+							<li>You can have multiple</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>A Totally Valid Webpack Config</h2>
+					<pre>
+						<code data-trim data-noescape>
+							module.exports = {
+								entry: './src/js/index.js',
+								output: './src/dist/bundle.js',
+								mode: 'development'
+							};
+						</code>
+					</pre>
+				</section>
+				<section data-background-image="https://media.giphy.com/media/BpGz4EEiqe784/giphy.gif">
+					<img class="fragment slide-in-bottom" src="assets/terry-cop.png"></img>
+				</section>
+				<section>
+					<h2>Our Project</h2>
+					<img src="assets/our-little-project.png" alt="">
+				</section>
+				<section>
+					<h2>Webpack Config</h2>
+					<pre>
+						<code data-trim data-noescape>
+							const path = require('path');
+
+							module.exports = {
+							  mode: 'development',
+							  entry: './src/js/index.js',
+							  output: {
+							    path: `${path.resolve(__dirname)}/dist`,
+							    filename: 'bundle.js'
+							  }
+							};
+						</code>
+					</pre>
+					<aside class="notes">
+						<ui>
+							<li>Run it</li>
+							<li>Show output -- OH GOD WHAT HAVE WE DONE</li>
+						</ui>
+					</aside>
+				</section>
+				<section data-background-image="assets/bundle-output.gif">
+					<img class="fragment visible slide-in-right" src="assets/terry-oh-god.png"></img>
+				</section>
+				<section data-background-image="https://media.giphy.com/media/k61nOBRRBMxva/giphy.gif">
+				</section>
+				<section>
+					<h2>What's it actually doing?</h2>
+					<pre>
+						<code data-trim data-noescape>
+							(function () {
+								// webpack custom require code
+								webpackCustomRequire('entryFile.js');
+							})({
+								'filename1.js': function (/* args */) {
+									eval("your code as a string here");
+								},
+								'entryFile.js': function (/* args */) {
+									eval("your code here as a string")
+								}
+							});
+						</code>
+					</pre>
+					<aside class="notes">
+						<ui>
+							<li>IIFE pattern</li>
+							<ul>
+								<li>Passes in object with each of the file paths as the property name</li>
+							</ul>
+							<li>Creates its own require statement</li>
+							<li>Passes your entry file into custom require</li>
+							<li>Eval statement with your code</li>
+							<li>Has replaced all "requires" with its custom require</li>
+						</ui>
+					</aside>
+				</section>
+				<section>
+					<h2>The same as...</h2>
+					<pre>
+						<code data-trim data-noescape>
+							function runWebpack() {
+							  // webpack custom require code
+							}
+
+							const jsFiles = {
+							  'filename1.js': function (/* args */) {
+							    eval("your code as a string here");
+							  },
+							  'entryFile.js': function (/* args */) {
+							    eval("your code here as a string")
+							  }
+							};
+
+							runWebpack(jsFiles);
+						</code>
+					</pre>
+					<img class="fragment slide-in-bottom" style="width: 448px" src="assets/terry-think.png"></img>
+				</section>
+				<section>
+					<h2>The Webpack Build Process</h2>
+					<ol>
+						<li>Build Dep Graph</li>
+						<li>Create Modules</li>
+						<li>Run Loaders</li>
+						<li>Parse</li>
+						<li>Create Template</li>
+					</ol>
+					<aside class="notes">
+						<ul>
+							<li>Parts of this process are recursive</li>
+							<li>Build a dep graph -- all the files in the project and their dependencies</li>
+							<li>Create modules -- JS objects with context about the file</li>
+							<li>Run loaders (transforms)</li>
+							<li>Parse the files (AST)</li>
+							<li>Create the output template (interpolation)</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>Example of Webpack Module</h2>
+					<pre>
+						<code data-trim data-noescape>
+							{
+							  dependencies: [],
+							  context: 'path/to/file',
+							  id: null,
+							  type: 'javascript/auto',
+							  // etc
+							}
+						</code>
+					</pre>
+					<img class="fragment visible slide-in-right" src="assets/terry-loaders.png"></img>
+				</section>
+				<section>
+					<h2>First, let's remove some of the complexity</h2>
+					<pre>
+						<code data-trim data-noescape>
+							const path = require('path');
+
+							module.exports = {
+							  entry: path.resolve(__dirname, './src/js/index.js'),
+							  output: {
+							    path: `${path.resolve(__dirname)}/dist`,
+							    filename: 'slimbundle.js'
+							  }
+							}
+						</code>
+					</pre>
+					<aside class="notes">
+						<ul>
+							<li>Similar to Webpack config -- call out difference</li>
+							<li>Update index.html to point to slimbundle!</li>
+							<li>Run & explain output</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>Loaders</h2>
+					<h4>A function that takes in source code and returns a new version of that source code</h4>
+				</section>
+				<section>
+					<h2>CSS Loader</h2>
+					<h4>Takes any CSS file and converts it to a string</h4>
+					<h4>Separates any <code style="color: #00AFAA">url()</code> or <code style="color: #00AFAA">@import</code> statements from the actual CSS</h4>
+				</section>
+				<section>
+					<h2>Config Update</h2>
+					<pre>
+						<code data-trim data-noescape>
+							const path = require('path');
+
+							module.exports = {
+							  entry: path.resolve(__dirname, './src/js/index.js'),
+							  output: { /* same as before */ },
+							  modules: {
+							    rules: [
+							      {
+							        test: /.css$/,
+							        use: [{ loader: 'css-loader' }]
+							      }
+							    ]
+							  }
+							};
+						</code>
+					</pre>
+					<aside class="notes">
+						<ul>
+							<li>Update config</li>
+							<li>update index.js to point to css file</li>
+							<li>Run & explain output</li>
+							<li>Prove it works!</li>
+							<li>Nothing in the DOM -- oh no!</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>Style Loader</h2>
+					<h4>Takes any CSS files and appends <code style="color: #00AFAA">style</code> or <code style="color: #00AFAA">link</code> elements to the DOM</h4>
+				</section>
+				<section>
+					<h2>Config Update</h2>
+					<pre>
+						<code data-trim data-noescape>
+							module.exports = {
+							  // entry & output same as before
+							  modules: {
+							    rules: [
+							      {
+							        test: /.css$/,
+							        use: [
+							          { loader: 'style-loader' },
+							          { loader: 'css-loader' }
+							        ]
+							      }
+							    ]
+							  }
+							};
+						</code>
+					</pre>
+					<aside class="notes">
+						<ul>
+							<li>Update config</li>
+							<li>Loaders processed from right to left!!</li>
+							<li>Run & explain output</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<div>Let's summarize</div>
+				</section>
+				<section>
+					<h2>Now you know, so go forth!</h2>
+					<img src="assets/nipsy.gif" alt="">
+					<h2>And Webpack all the things!</h2>
+				</section>
+				<section data-background-image="https://media.giphy.com/media/IcGkqdUmYLFGE/giphy.gif"></section>
+				<section>
+					<img class="about-emoji" src="assets/rockon-emoji.svg" alt="">
+					<h4>Slides: <span style="color: #00AFAA">bit.ly/learn-webpack-slides</span></h2>
+					<h4>Demo Project: <span style="color: #00AFAA">bit.ly/learn-webpack-code</span></h2>
+					<img class="fragment slide-in-bottom" style="width: 360px" src="assets/terry-business.png"></img>
+				</section>
+			</div>
+		</div>
+	
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+			
+			Reveal.addEventListener('fragmentshown', function (event) {
+				for (let i = 0; i < event.fragment.classList.length; i++) {
+					if (event.fragment.classList[i] === 'slide-in-right') {
+						console.log('here?');
+						event.fragment.animate([
+						  // keyframes
+						  { transform: 'translateX(0px)' }, 
+						  { transform: 'translateX(-400px)' }
+						], { 
+							fill: 'forwards',
+						  duration: 500
+						});
+					}
+					
+					if (event.fragment.classList[i] === 'slide-in-bottom') {
+						event.fragment.animate([
+							// keyframes
+							{ transform: 'translateY(0px)' }, 
+							{ transform: 'translateY(-160px)' }
+						], { 
+							fill: 'forwards',
+							duration: 500
+						});
+					}
+				}			
+			});
+		</script>
+	</body>
+</html>

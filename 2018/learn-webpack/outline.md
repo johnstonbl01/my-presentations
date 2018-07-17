@@ -1,0 +1,63 @@
+- Who am I?
+  - Dev @ RU for 2.5 yrs
+    - React, React Native, Ionic, Angular, Node, GraphQL, etc, etc
+- What is Webpack?
+  - Module bundler
+  - Not a task runner (i.e. grunt)
+  - Enables writing modular code for a web project
+- Story Time
+  - Starter project with modules
+  - file:///Users/bjohnston/dev/learn-webpack/index.html
+- Disclaimer
+  - Tip of the iceberg
+  - Generalities & high-level discussion
+- Key Concepts
+  - Entry (next slide)
+  - Output
+    - Where and what format you want the output of webpack to go
+  - Mode
+    - Environment setting for Webpack
+    - Will optimize if set to production
+  - Loaders (later) think transform
+  - Plugins
+    - Modules that tap into Webpack's compiler events (think build process changes)
+- Entry
+  - Beginning of the dependency graph
+- Example config
+- Buckle up!
+- Project Overview
+  - A couple JS files used in an index file
+- Webpack config for this project
+  - Run it
+  - Show output -- OH GOD WHAT HAVE WE DONE
+- What's it doing?
+  - IIFE pattern
+    - object with each of the file paths as the property name
+  - Creates its own require statement
+  - Passes your entry file into the custom require
+  - Eval statement with your code. It has replaced all of your require statements with its custom require statement
+- How does it get there?
+  - Parts of this process are recursive
+  - Build a dep graph -- all the files and the files they depend on
+  - Create modules -- JS objects with context about the file
+  - Run loaders (transforms)
+  - Parse the files (AST)
+  - Create the output template (interpolation)
+- Slimpack Config
+  - Very similar to our Webpack Config
+  - Explain Output
+  - Update index.html to point to slimbundle!
+- Loaders
+- CSS Loader
+- CSS Loader Config
+  - Update config
+  - Update index.js to point to style file
+  - Run Slimpack
+  - Explain Output
+  - Show that it works
+  - Nothing will show up in the DOM
+- Style Loader
+  - Update Config
+  - ! Loaders processed from right to left
+  - Explain output
+- Thank you!
