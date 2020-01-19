@@ -1,0 +1,77 @@
+/**
+ * Black theme for reveal.js. This is the opposite of the 'white' theme.
+ *
+ * By Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+@import url(../../lib/font/source-sans-pro/source-sans-pro.css);
+
+// Colors
+$hotPink: #f03397;
+$purple: #5E4A9D;
+$white: #FFFFFF;
+$yellow: #FDF688;
+$orange: #F2B239;
+$blue: #97DAF7;
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: $purple;
+
+$mainColor: $white;
+$headingColor: $hotPink;
+
+$mainFontSize: 38px;
+$mainFont: 'Source Sans Pro', Helvetica, sans-serif;
+$headingFont: 'Source Sans Pro', Helvetica, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: uppercase;
+$headingFontWeight: 600;
+$linkColor: $blue;
+$linkColorHover: lighten( $linkColor, 15% );
+$selectionBackgroundColor: lighten( $linkColor, 25% );
+
+$heading1Size: 2.5em;
+$heading2Size: 1.6em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
+
+$textAccent: $yellow;
+
+section.has-light-background {
+   &, h1, h2, h3, h4, h5, h6 {
+      color: #222;
+   }
+}
+
+#title {
+   margin: 0 0 0 0;
+}
+
+.highlight-text {
+   color: $textAccent;
+}
+
+.comparison-container {
+   width: 700px;
+}
+
+.comparison-container > div {
+   float: left;
+}
+
+.comparison-container ul {
+   font-size: 0.7em;
+}
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
