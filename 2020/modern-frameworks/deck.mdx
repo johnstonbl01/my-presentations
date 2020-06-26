@@ -1,0 +1,220 @@
+import { Image } from "mdx-deck";
+import { CodeSurfer } from "code-surfer";
+import { oceanicNext } from "@code-surfer/themes";
+
+import deckTheme from "./deck-theme";
+import Title from "./layouts/Title";
+import Highlight from "./layouts/Highlight";
+import Default from "./layouts/Default";
+import AppPreview from "./layouts/AppPreview";
+import BuildDetails from "./layouts/BuildDetails";
+import ProjectMetrics from "./layouts/ProjectMetrics";
+import Performance from "./layouts/Performance";
+import Timelines from "./layouts/Timelines";
+import GeneralThoughts from "./layouts/GeneralThoughts";
+import Attention from "./layouts/Attention";
+import Enjoyment from "./layouts/Enjoyment";
+import Architecture from "./layouts/Architecture";
+
+import reactArch from "./static/react-arch.svg";
+import vueArch from "./static/vue-arch.svg";
+import emberArch from "./static/ember-arch.svg";
+import angularArch from "./static/angular-arch.svg";
+
+export const theme = deckTheme;
+
+<Title>
+
+# Comparison of Modern JS Frameworks
+
+</Title>
+
+---
+
+<Highlight>
+
+## The Process
+
+</Highlight>
+
+---
+
+<Default title="Ground Rules">
+
+**Goal:** Build the same app using Vue, React, Angular &amp; Ember to compare and contrast approaches.
+
+- Latest version only
+- No CSS-in-JS
+- No external libraries**\***
+- Same application / functionality
+- Generate app via CLI
+- No unit / integration / e2e tests
+- Mobile design only
+- No outside help - docs / google only
+
+</Default>
+
+---
+
+<Attention>
+
+# Disclaimer!
+
+</Attention>
+
+---
+
+<Image src="https://i.imgflip.com/46bfik.jpg" />
+
+---
+
+<AppPreview />
+
+---
+
+<BuildDetails />
+
+---
+
+<Highlight>
+
+## Objective Comparisons
+
+</Highlight>
+
+---
+
+<ProjectMetrics />
+
+---
+
+<Performance />
+
+---
+
+<Timelines />
+
+---
+
+<Default title="App Architecture" />
+
+---
+
+<Architecture src={reactArch} />
+
+---
+
+<Architecture src={vueArch} />
+
+---
+
+<Architecture src={angularArch} />
+
+---
+
+<Architecture src={emberArch} />
+
+---
+
+<Highlight>
+
+## Subjective Comparisons
+
+</Highlight>
+
+---
+
+<Attention>
+
+# Disclaimer!
+
+</Attention>
+
+---
+
+<Image src="https://media.giphy.com/media/26BRrSvJUa0crqw4E/giphy.gif" />
+
+---
+
+<Default title="Documentation & CLI">
+
+- **React: ** 4 / 5
+- **Vue: ** 4 / 5
+- **Angular: ** 3.5 / 5
+- **Ember: ** 3 / 5
+
+</Default>
+
+---
+
+<Default title="General Thoughts">
+
+</Default>
+
+---
+
+<GeneralThoughts
+  framework="react"
+  pros={[
+    'The slogan "it\'s just JavaScript" feels right',
+    "Easy to pass data around",
+    'Feels very "light"; not much boilerplate',
+    "Amazing tooling",
+  ]}
+  cons={[
+    "Some framework-specific conventions",
+    "JSX can be weird at first",
+    "Very JS heavy",
+  ]}
+/>
+
+---
+
+<GeneralThoughts
+  framework="vue"
+  pros={[
+    "Very approachable",
+    "Lots of features built-in",
+    "Single file components",
+    "Amazing tooling",
+  ]}
+  cons={[
+    "Can be difficult to share logic",
+    "Missing solutions for some common issues (i.e. fragments)",
+    "Some conventions can be confusing",
+  ]}
+/>
+
+---
+
+<GeneralThoughts
+  framework="angular"
+  pros={[
+    "Very defined conventions with some flexibility",
+    "Very detailed documentation",
+    "Still difficult to learn",
+    "Amazing tooling",
+  ]}
+  cons={["Observables", "Lots of boilerplate", "Very JS Heavy", "TypeScript"]}
+/>
+
+---
+
+<GeneralThoughts
+  framework="ember"
+  pros={["Everything has a place", "Helpful community"]}
+  cons={[
+    "Mixed conventions currently",
+    "Docs out of date",
+    "Difficult paradigms / conventions",
+    "Easy tasks are difficult",
+  ]}
+/>
+
+---
+
+<Enjoyment />
+
+---
+
+<Image src="https://media.giphy.com/media/KJ1f5iTl4Oo7u/giphy-downsized-large.gif" />
